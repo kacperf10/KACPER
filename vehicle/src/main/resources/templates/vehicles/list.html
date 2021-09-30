@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring Demo</title>
+</head>
+<body>
+	<h1>Vehicle List</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Owner Name</th>
+		</tr>
+		<tr th:each="vehicle: ${vehicles}">
+			<td th:text="${vehicle.ID}">ID</td>
+			<td th:text="${vehicle.make}">Make</td>
+			<td th:text="${vehicle.model}">Model</td>
+			<td th:text="${vehicle.owner.firstName}">Owner First Name</td>
+			<td th:text="${vehicle.owner.lastName}">Owner Last Name</td>
+			<td><form action="#"
+					th:action="@{/deletevehicle/__${vehicle.ID}__}"
+					th:object="${vehicle}" method="get">
+
+					<input type="submit" value="Delete Vehicle">
+
+				</form></td>
+
+
+
+		</tr>
+	</table>
+	<p>
+		<a href="/addvehicleform">Add a new vehicle</a>
+	</p>
+
+	<p>
+		<a href="/">Home</a>
+	</p>
+</body>
+</html>

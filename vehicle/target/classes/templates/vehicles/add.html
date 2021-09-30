@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Vehicle</title>
+</head>
+<body>
+	<form action="#" th:action="@{/addvehicle}" th:object="${vehicle}"
+		method="post">
+		<label for="make">Make</label> <input type="text" th:field="*{make}"
+			id="make" placeholder="Make"> <span
+			th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></span> <label
+			for="model">Model</label> <input type="text" th:field="*{model}"
+			id="model" placeholder="Model"> <span
+			th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span> <label
+			for="registrationNumber">Registration Number</label> <input
+			type="text" th:field="*{registrationNumber}" id="registrationNumber"
+			placeholder="RegistrationNumber"> <span
+			th:if="${#fields.hasErrors('registrationNumber')}"
+			th:errors="*{registrationNumber}"></span> <select
+			th:field="*{owner.ID}">
+			<option th:each="owner : ${owners}" th:value="${owner.ID}"
+				th:text="${owner.firstName} + ' ' + ${owner.lastName}"></option>
+		</select> #
+		<!--    <label for="owner.ID">owner IDr</label>
+    <input type="text" th:field="*{owner.ID}" id="owner.ID" placeholder="owner.ID">
+    <span th:if="${#fields.hasErrors('owner.ID')}" th:errors="*{owner.ID}"></span>
+    -->
+
+		<input type="submit" value="Add Vehicle">
+	</form>
+	<p>
+		<a href="/">Home</a>
+	</p>
+</body>
+</html>
